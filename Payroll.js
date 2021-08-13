@@ -109,3 +109,68 @@ console.log(
 function calculateDailyWage(empHrs) {
   return empHrs * WAGE_PER_HR;
 }
+//UC-7 Array Helper functions
+//7a)reduce and Foreach Traversal
+console.log("***7a) Array Helper function Foreach and reduce***");
+let totEmpWage = 0;
+function sum(dailyWage) {
+  totEmpWage += dailyWage;
+}
+//foreach to traverse the array and print total wage
+empDailyWageArr.forEach(sum);
+console.log(
+  "Total Days : " +
+    totalWorkingDays +
+    " Total Hours : " +
+    totalEmpHrs +
+    " Emp Wage : " +
+    totEmpWage
+);
+function totalWages(totWage,dailyWage){
+return totWage+dailyWage;
+}
+//using reduce to traverse the array,
+console.log("Total Wage using Reduce "+empDailyWageArr.reduce(totalWages,0));
+//7b)Map Traversal
+console.log("***7b) Array Helper function Map***");
+let day = 0;
+//functions to day with wage
+function mapDayWithWage(dailywage){
+    day++;
+    return day+" = "+dailywage;
+}
+let mapDayWithWageArr = empDailyWageArr.map(mapDayWithWage);
+console.log("Day With Daily Wage");
+console.log(mapDayWithWageArr);
+//7c)Filter use
+function fullTimeWage(dailyWage){
+    return dailyWage.includes("160");
+}
+console.log("***7c)Filter use***");
+let fullTime = mapDayWithWageArr.filter(fullTimeWage);
+console.log("Full time along with day")
+console.log(fullTime);
+//7d)Usinf find to get the first occurence
+console.log("***7d)Usinf find to get the first occurence***")
+function findFullTimeFirstOccurence(dailyWage){
+    return dailyWage.includes("160");
+}
+console.log("7d)Find 1st occurences with full day salary: "+mapDayWithWageArr.find(findFullTimeFirstOccurence));
+//7E) check if every element of full time employee has full time wage
+function isAllFullTimeWage(dailyWage){
+    return dailyWage.includes("160");
+}
+console.log("7e)IS Find every occurences with full day salary: "+fullTime.every(isAllFullTimeWage));
+//7F) check for any part time wage using some
+function isAnyPartTimeWage(dailyWage){
+    return dailyWage.includes("80");
+
+} 
+console.log("7f)check for any part time wage using some: "+mapDayWithWageArr.some(isAnyPartTimeWage));
+//7g)Find the number of days worked
+function totalDaysWorked(numofDays,dailyWage){
+    if(dailyWage>0)
+    numofDays++;
+    return numofDays;
+}
+console.log("7g)Number of days employee worked : "+empDailyWageArr.reduce(totalDaysWorked,0));
