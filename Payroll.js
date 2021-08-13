@@ -51,17 +51,17 @@ function getWorkinghours(empCheck){
 switch(empCheck)
 {
     case IS_PART_TIME:
-        console.log("Part Time")
+        //console.log("Part Time")
         empHrs=PART_TIME_HRS;
         return empHrs;
         break;
     case IS_FULL_TIME:
-        console.log("Full Time")
+        //console.log("Full Time")
         empHrs=FULL_TIME_HRS;
         return empHrs;
          break;
     default:
-        console.log("Absent")
+        //console.log("Absent")
         empHrs=0;
         return empHrs;
         break;
@@ -69,6 +69,7 @@ switch(empCheck)
 }
 }
 //UC 4: Calculate wage for a month
+console.log("***calculate wage for 20 days***");
 var empHrs1=0;
 const TOTAL_WORKING_DAYS = 20;
 var empWage1=0;
@@ -78,3 +79,16 @@ for(let day = 0;day<TOTAL_WORKING_DAYS;day++){
 }
 empWage1=empHrs1*WAGE_PER_HR;
 console.log("Total Emp Hrs :"+empHrs1+" Total Emp Wage : "+empWage1);
+//UC-5: Calculate wage till number of days and hours are reached
+console.log("***UC-5: Calculate wage till number of days and hours are reached***");
+const MAX_HRS_IN_MONTH=160;
+let totalEmpHrs=0;
+let totalWorkingDays=0;
+while(totalEmpHrs<=MAX_HRS_IN_MONTH && totalWorkingDays<TOTAL_WORKING_DAYS)
+{
+    totalWorkingDays++;
+    empCheck=Math.floor(Math.random()*10)%3;
+    totalEmpHrs+=getWorkinghours(empCheck);
+}
+let empWage3=totalEmpHrs*WAGE_PER_HR;
+console.log("Total Days : "+ totalWorkingDays + " Total Hours : "+totalEmpHrs + " Emp Wage : "+empWage3);
