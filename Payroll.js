@@ -150,7 +150,7 @@ console.log("***7c)Filter use***");
 let fullTime = mapDayWithWageArr.filter(fullTimeWage);
 console.log("Full time along with day")
 console.log(fullTime);
-//7d)Usinf find to get the first occurence
+//7d)Using find to get the first occurence
 console.log("***7d)Usinf find to get the first occurence***")
 function findFullTimeFirstOccurence(dailyWage){
     return dailyWage.includes("160");
@@ -174,3 +174,33 @@ function totalDaysWorked(numofDays,dailyWage){
     return numofDays;
 }
 console.log("7g)Number of days employee worked : "+empDailyWageArr.reduce(totalDaysWorked,0));
+//UC-8 Using Map
+console.log("***UC8 - Using Map***")
+{
+  const MAX_HRS_IN_MONTH = 160;
+  const TOTAL_WORKING_DAYS = 20;
+  let totalEmpHrs = 0;
+  let totalWorkingDays = 0;
+  let empDailyWageArr = new Array();
+  let empDailyWageMap = new Map();
+  function calculateDailyWage(empHrs){
+      return empHrs*WAGE_PER_HR;
+  }
+  while (
+    totalEmpHrs <= MAX_HRS_IN_MONTH &&
+    totalWorkingDays < TOTAL_WORKING_DAYS
+  ) {
+    totalWorkingDays++;
+    empCheck = Math.floor(Math.random() * 10) % 3;
+    totalEmpHrs += getWorkinghours(empCheck);
+    empDailyWageArr.push(calculateDailyWage(getWorkinghours(empCheck)));
+    empDailyWageMap.set(totalWorkingDays,calculateDailyWage(getWorkinghours(empCheck)));
+  }
+  console.log(empDailyWageMap);
+  function totalWages(totalWage,dailyWage){
+    return totalWage+dailyWage;
+  }
+  //Array.from create a array with elements satisfying the condition
+  console.log("Emp Wage Map total Wage: "+
+  Array.from(empDailyWageMap.values()).reduce(totalWages,0));
+}
