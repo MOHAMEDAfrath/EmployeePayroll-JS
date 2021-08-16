@@ -175,6 +175,7 @@ function totalDaysWorked(numofDays,dailyWage){
 }
 console.log("7g)Number of days employee worked : "+empDailyWageArr.reduce(totalDaysWorked,0));
 //UC-8 Using Map
+var empDailyHrmap = new Map();
 console.log("***UC8 - Using Map***")
 {
   const MAX_HRS_IN_MONTH = 160;
@@ -194,6 +195,7 @@ console.log("***UC8 - Using Map***")
     empCheck = Math.floor(Math.random() * 10) % 3;
     totalEmpHrs += getWorkinghours(empCheck);
     empDailyWageArr.push(calculateDailyWage(getWorkinghours(empCheck)));
+    empDailyHrmap.set(totalWorkingDays,getWorkinghours(empCheck));
     empDailyWageMap.set(totalWorkingDays,calculateDailyWage(getWorkinghours(empCheck)));
   }
   console.log(empDailyWageMap);
@@ -203,4 +205,29 @@ console.log("***UC8 - Using Map***")
   //Array.from create a array with elements satisfying the condition
   console.log("Emp Wage Map total Wage: "+
   Array.from(empDailyWageMap.values()).reduce(totalWages,0));
+
+//UC-9 Arrow Functions
+const findTotal = (totalVal,DailyVal)=>{
+  return totalVal+DailyVal;
+}
+let count = 0;
+let totalHrs = Array.from(empDailyHrmap.values()).reduce(findTotal,0);
+let totalSalary = Array.from(empDailyWageMap.values()).filter(dailyWage=>dailyWage>0).reduce(findTotal,0);
+//UC-9a)Use arrow function to find emp total hrs and wage
+console.log(`UC9a) Arrow => Emp Total hrs: ${totalHrs} \nEmp Total Wage: ${totalSalary} `);
+//UC-9b)show fll working day,part time and absent days
+let absentDays = new Array();
+let partWorkingDay = new Array();
+let fullWorkingDay = new Array();
+empDailyHrmap.forEach((value,key,map) =>{
+  if( value == 8)
+  fullWorkingDay.push(key);
+  else if(value == 4)
+  partWorkingDay.push(key);
+  else
+  absentDays.push(key);
+})
+console.log("Full working days "+fullWorkingDay);
+console.log("Part time days : "+partWorkingDay);
+console.log("Absent days "+absentDays);
 }
