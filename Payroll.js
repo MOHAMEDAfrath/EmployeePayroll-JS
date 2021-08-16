@@ -268,5 +268,18 @@ console.log("***UC8 - Using Map***");
     });
   }
   console.log("UC 10 Daily hrs worked and wage earned "+empDailyHrsandWage);
+  //UC11 arrow function using objects
+   totalWages = empDailyHrsandWage.filter(dailyHrsandwage=>dailyHrsandwage.Wage>0)
+  .reduce((totalWage,dailyHrswage)=>totalWage+=dailyHrswage.Wage,0);
+  console.log("UC11a) Total wage: "+totalWages);
+  totalHours = empDailyHrsandWage.filter(dailyHrsandwage=>dailyHrsandwage.Wage>0)
+  .reduce((totalHours,dailyHrswage)=>totalHours+=dailyHrswage.hrsWorked,0);
+  console.log("UC11a) Total Hrs : "+totalHours);
+  console.log("UC-11b) Full working day :");
+  empDailyHrsandWage.filter(dailyHrswage=>dailyHrswage.hrsWorked == 8).forEach(dailyHrswage=>console.log(dailyHrswage.toString()));
+  let partTimearr = empDailyHrsandWage.filter(dailyHrswage=>dailyHrswage.hrsWorked == 4).map(dailyHrswage=>dailyHrswage.toString());
+  console.log("UC-11c) Part working day : "+partTimearr);
+  let absentArr = empDailyHrsandWage.filter(dailyHrswage=>dailyHrswage.hrsWorked == 0).map(dailyHrswage=>dailyHrswage.daysWorked);
+  console.log("UC-11d) No working day : "+absentArr);
 }
 
