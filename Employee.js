@@ -25,10 +25,6 @@ class EmployeePayrollData{
     }
 
 }
-let employeePayrollData = new EmployeePayrollData(1,"Dhanush",30000);
-console.log(employeePayrollData.toString());
-employeePayrollData.name = 'Hello';
-console.log(employeePayrollData.toString());
 var d = new Date();
 employeePayrollData = new EmployeePayrollData(1,"Dhanush",30000,'M',d.toLocaleDateString());
 console.log(employeePayrollData.toString());
